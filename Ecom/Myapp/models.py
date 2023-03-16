@@ -35,9 +35,9 @@ class content(models.Model):
 
 
 
-# class CartItems(BaseModel):
-#     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cart_items')
-#     product =models.ForeignKey()
+class CartItems(models.Model):
+    cart = models.ForeignKey(to=content, on_delete=models.CASCADE)
+    quantity =models.IntegerField()
 
 
 
