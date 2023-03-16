@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+}
+.first{
+    height: 320px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    /* background-image: url(E-commerce2/hero_products.jpg); */
+}
+.sells {
+width: 90%;
+height: 120vh;
+position: relative;
+top: 100px;
+left: 70px;
+/* background-color: rgb(255, 0, 0); */
+}
+#hr {
+position: relative;
+top: 150px;
+}
+.sells h3 {
+text-align: center;
+font-size: 29px;
+}
+.one_row{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows:320px;
+column-gap: 30px;
+position: relative;
+top:30px;
+}
+.one {
+grid-column: 1/2;
+grid-row: 1/2;
+/* background-color: blue; */
+background-image: url(E-commerce2/shoe21.jpg);
+background-position: center;
+background-size: contain;
+background-repeat: no-repeat;
+
+}
+.two {
+grid-column: 2/3;
+grid-row: 1/2;
+/* background-color: blue; */
+background-image: url(E-commerce2/jordans.jpg);
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+
+}
+.three{
+grid-column: 3/4;
+grid-row: 1/2;
+/* background-color: blue; */
+background-image: url(E-commerce2/shoe21.jpg);
+background-position: center;
+background-size: contain;
+background-repeat: no-repeat;
+}
+.price {
+background-color: rgba(0, 128, 0, 0.003);
+width: 100%;
+position: relative;
+top: 99.99%;
+height: 160px;
+}
+.price > #title {
+position: relative;
+left: 30px;
+top: 20px;
+}
+.price > #price {
+position: relative;
+left: 30px;
+top: 40px;
+}
+/* .product {
+background-color: yellow;
+height: 100px;
+top: 50px;
+position: relative;
+
+} */
+.price a button:hover{
+cursor: pointer;
+background-color: black;
+color: white;
+}
+.price a button{
+width: 100%;
+border-radius: 8px;
+height: 40px;
+background-color: white;
+border: 1px solid black;
+position: relative;
+top: 78px;
+}
+#img{
+    position: relative;
+    top: 40px;
+}

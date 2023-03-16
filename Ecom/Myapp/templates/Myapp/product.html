@@ -1,0 +1,78 @@
+{% extends 'Myapp/layout.html' %}
+
+{% load static %}
+
+
+{% block 'body' %}
+<head>
+    <link rel="stylesheet" href="{% static 'Myapp/products.css' %}">
+    <link rel="stylesheet" href="{% static 'Myapp/e-commerce.css' %}">
+
+</head>
+    <div class="first">
+        <img id="img" src="{% static 'Myapp/hero_products.jpg' %}" alt="" width="100%" height="110%">
+    </div>
+    <hr id="hr">
+    <h3 id="h3">Products</h3>
+
+    {% for s in view %}
+
+    <div class="sells">
+    
+        <div class="one_row">
+            <div>
+            <form action="{% url 'cart' %}" method="get">
+
+            <div class="one">
+                <!-- <div class="jproduct"></div> -->
+                <img name="image" src="{{s.img.url}}" width="380px" height="125%" alt="" >
+                
+            <div class="price pone">
+                <span name="title" id="title">{{s.title}}</span><br>
+                <span name="price" id="price" >NGN {{s.price}}</span><br>
+                <!-- <a href="#"><button>Add to cart</button></a> -->
+                <input type="submit" value="Add to cart">
+</form>
+
+            </div>
+        </div>
+    </div>
+    
+    
+        <div>
+            <div class="two">
+                <!-- <div class="product"></div> -->
+                <img src="{{s.img1.url}}" width="380px" height="125%" alt="">
+                
+            <div class="price ptwo">
+                <span id="title">{{s.title1}}</span><br>
+                <span id="price">NGN {{s.price1}}</span><br>
+                <a href="#"><button>Add to cart</button></a>
+            </div>
+        </div>
+    </div>
+    
+    
+            <div>
+            <div class="three">
+                <!-- <div class="product"></div> -->
+                <img src="{{s.img2.url}}" width="380px" height="125%" alt="">
+                
+            <div class="price pthree">
+                <span id="title">{{s.title2}}</span><br>
+                <span id="price">NGN {{s.price2}}</span><br>
+                <a href="#"><button>Add to cart</button></a>
+            </div>
+        </div>
+        </div>
+    
+        </div>
+    
+    
+    </div>
+    {%endfor%}
+    <!-- <a href="{%url 'products' %}"><input type="submit" value="View all" id="view" class="animate__animated animate__backInLeft"><i class="fa-solid fa-arrow-right"></i></input></a> -->
+    
+    
+
+    {%endblock%}
