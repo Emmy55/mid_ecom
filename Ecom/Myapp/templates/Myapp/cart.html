@@ -6,9 +6,9 @@
 {% block 'body' %}
 
 <head>
-   
+
     <style>
-        .cart1{
+        .cart1 {
             width: 36%;
             top: 80px;
             height: 360px;
@@ -20,6 +20,7 @@
             border: 1px solid rgba(0, 0, 0, 0.344);
 
         }
+
         .cancel {
             /* left: 350px; */
             float: right;
@@ -28,9 +29,10 @@
             cursor: pointer;
             left: 30px;
             top: 30px
-            /* top: 10px; */
-            
+                /* top: 10px; */
+
         }
+
         #cancel {
             border: 2px solid black;
             padding: 14px 11px 14px 19px;
@@ -39,22 +41,26 @@
             cursor: pointer;
 
         }
+
         .cart1 h2 {
             text-align: center;
             position: relative;
             /* left: 45px; */
         }
+
         .cart1 img {
-            width:130px;
-            margin: 20px 20px 20px 30px ;
+            width: 130px;
+            margin: 20px 20px 20px 30px;
         }
+
         .desc {
             float: right;
             position: relative;
             right: 190px;
             top: 10px;
         }
-        .three{
+
+        .three {
             float: right;
             position: relative;
             left: 170px;
@@ -64,50 +70,60 @@
             /* width: 100px; */
             border: 1px solid rgba(0, 0, 0, 0.435);
         }
+
         .minus {
             /* border: 1px solid black; */
             padding: 10px 14px 10px 14px;
             cursor: pointer;
         }
+
         .number {
             padding: 10px 14px 10px 14px;
         }
-        .plus{
+
+        .plus {
             padding: 10px 14px 10px 14px;
             cursor: pointer;
         }
+
         .all_cancel {
             height: 78px;
             width: 70px;
             /* background-color: red; */
-            position:relative;
-            left:80%;
+            position: relative;
+            left: 80%;
         }
+
         /* body {
             background: blur(520px);
         } */
     </style>
 </head>
+
 <body>
     <div class="cart1">
-    <div class="all_cancel">
-
-        <div class="cancel"><i id="cancel" class="fa-solid fa-xmark"></i></div>
-    </div>
+        <div class="all_cancel">
+            
+            <div class="cancel"><i id="cancel" class="fa-solid fa-xmark"></i></div>
+        </div>
         <h2>My Cart</h2>
         <hr>
-        <img src="E-commerce2/whiteshoe1.jpg" alt="">
+        {% for item in cart_items %}
+        <img src="{{item.product.img}}" alt="">
         <div class="desc">
-            <h4>Title</h4>
+            <h4>{{ item.product.name }}</h4>
             <p>Size: 45</p>
-            <p>Price: </p>
+            <p>Price: {{ item.product.price }}</p>
             <div class="three">
-                <div class="minus"><i id="minus" class="fa-solid fa-minus"></i></div>
-                <div class="number">1</div>
-                <div class="plus"><i id="plus" class="fa-solid fa-plus"></i></div>
+                <div class="minus"><a href="{% url 'decrement' item.product.id%}"><i id="minus" class="fa-solid fa-minus"></i></a></div>
+                <div class="number"> {{ item.quantity }}</div>
+                <div class="plus"><a href="{% url 'increment' item.product.id%}"><i id="plus" class="fa-solid fa-plus"></i></a></div>
             </div>
         </div>
+        {% endfor %}
+        Total: {{ total }}
     </div>
+
 </body>
 <script>
     cancel = document.querySelector('.all_cancel')
@@ -117,30 +133,20 @@
     cart = document.querySelector('.cart')
     number = document.querySelector('.number')
     count = 0;
-    cancel.addEventListener('click', ()=> {
+    cancel.addEventListener('click', () => {
         cart.style.display = 'none'
     })
-     minus.addEventListener('click', ()=> {
+    minus.addEventListener('click', () => {
         minus.style.backgroundColor = 'black'
-        count--;
-        number.innerHTML = count;
         minus.style.color = 'white'
-        if (count < 0) {
-            number.innerHTML = count
-        }
     })
-     
-     plus.addEventListener('click', ()=> {
+
+    plus.addEventListener('click', () => {
         plus.style.backgroundColor = 'black'
-        count++;
         plus.style.color = 'white'
-        number.innerHTML = count
-        if (count < 0) {
-            number.innerHTML = 0
-        }
     })
-    
-    
+
+
 
 </script>
 <script src="https://kit.fontawesome.com/9da17deac8.js" crossorigin="anonymous"></script>

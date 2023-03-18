@@ -4,83 +4,87 @@
 
 
 {% block 'body' %}
+
 <head>
     <link rel="stylesheet" href="{%static 'Myapp/e-commerce.css' %}">
 
 </head>
 <div class="hero">
-        
-    <h1>Give Your <img class='animate__animated animate__backInDown' src="{% static 'Myapp/whiteshoe1.jpg' %}" alt=""> home the lovely scent it deserve</h1>
-        <button class="animate__animated animate__backInLeft"><a href="{% url 'products'%}">Shop now <i class="fa-solid fa-arrow-right"></i></a></button>
-        <p>Listen to what people are saying about our designs</p>
-        <div class="round">
-            <img id="img1" src="{% static 'Myapp/img1.jpg' %}" alt="">
-            <img class="img1" src="{% static 'Myapp/img2.jpg' %}" alt="">
-            <img class="img2" src="{% static 'Myapp/img3.jpg' %}" alt="">
-            <img class="img3" src="{% static 'Myapp/img4.jpg' %}" alt="">
-            <a href="#">+300 people</a>
-        </div>
-        <div class="left_img">
-            <img src="{% static 'Myapp/belt1.jpg' %}" alt="" >
-        </div>
-        <img class="middle_img" src="{% static 'Myapp/shoe2.jpg' %}" alt="">
-        <img class="right_img" src="{% static 'Myapp/short2.jpg' %}" alt="">
+
+    <h1>Give Your <img class='animate__animated animate__backInDown' src="{% static 'Myapp/whiteshoe1.jpg' %}" alt="">
+        home the lovely scent it deserve</h1>
+    <button class="animate__animated animate__backInLeft"><a href="{% url 'products'%}">Shop now <i
+                class="fa-solid fa-arrow-right"></i></a></button>
+    <p>Listen to what people are saying about our designs</p>
+    <div class="round">
+        <img id="img1" src="{% static 'Myapp/img1.jpg' %}" alt="">
+        <img class="img1" src="{% static 'Myapp/img2.jpg' %}" alt="">
+        <img class="img2" src="{% static 'Myapp/img3.jpg' %}" alt="">
+        <img class="img3" src="{% static 'Myapp/img4.jpg' %}" alt="">
+        <a href="#">+300 people</a>
+    </div>
+    <div class="left_img">
+        <img src="{% static 'Myapp/belt1.jpg' %}" alt="">
+    </div>
+    <img class="middle_img" src="{% static 'Myapp/shoe2.jpg' %}" alt="">
+    <img class="right_img" src="{% static 'Myapp/short2.jpg' %}" alt="">
 </div>
 <hr id="hr">
 <h3 id="h3">Our best selling products</h3>
 
-{% for s in all %}
 
 <div class="sells">
-
+    
     <div class="one_row">
+        {% for s in all %}
         <div>
-        <div class="one">
-            <!-- <div class="jproduct"></div> -->
-            <img src="{{s.img.url}}" width="380px" height="125%" alt="">
-            
-        <div class="price pone">
-            <span id="title">{{s.title}}</span><br>
-            <span id="price">NGN {{s.price}}</span><br>
-            <a href="#"><button>Add to cart</button></a>
+            <div class="one">
+                <!-- <div class="jproduct"></div> -->
+                <img src="{{s.img.url}}" width="380px" height="125%" alt="">
+
+                <div class="price pone">
+                    <span id="title">{{s.title}}</span><br>
+                    <span id="price">NGN {{s.price}}</span><br>
+                    <a href="{% url 'add_to_cart' s.id %}">Add to Cart</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 
-    <div>
-        <div class="two">
-            <!-- <div class="product"></div> -->
-            <img src="{{s.img1.url}}" width="380px" height="125%" alt="">
-            
-        <div class="price ptwo">
-            <span id="title">{{s.title1}}</span><br>
-            <span id="price">NGN {{s.price1}}</span><br>
-            <a href="#"><button>Add to cart</button></a>
+        <!-- <div>
+            <div class="two">
+                <div class="product"></div>
+                <img src="{{s.img1.url}}" width="380px" height="125%" alt="">
+
+                <div class="price ptwo">
+                    <span id="title">{{s.title1}}</span><br>
+                    <span id="price">NGN {{s.price1}}</span><br>
+                    <a href="#"><button>Add to cart</button></a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 
         <div>
-        <div class="three">
-            <!-- <div class="product"></div> -->
-            <img src="{{s.img2.url}}" width="380px" height="125%" alt="">
-            
-        <div class="price pthree">
-            <span id="title">{{s.title2}}</span><br>
-            <span id="price">NGN {{s.price2}}</span><br>
-            <a href="#"><button>Add to cart</button></a>
-        </div>
-    </div>
-    </div>
+            <div class="three">
+                <div class="product"></div>
+                <img src="{{s.img2.url}}" width="380px" height="125%" alt="">
 
+                <div class="price pthree">
+                    <span id="title">{{s.title2}}</span><br>
+                    <span id="price">NGN {{s.price2}}</span><br>
+                    <a href="#"><button>Add to cart</button></a>
+                </div>
+            </div>
+        </div> -->
+
+        {%endfor%}
     </div>
 
 
 </div>
-{%endfor%}
-<a href="{%url 'products' %}"><input type="submit" value="View all" id="view" class="animate__animated animate__backInLeft"><i class="fa-solid fa-arrow-right"></i></input></a>
+<a href="{%url 'products' %}"><input type="submit" value="View all" id="view"
+        class="animate__animated animate__backInLeft"><i class="fa-solid fa-arrow-right"></i></input></a>
 
 
 {%endblock%}
