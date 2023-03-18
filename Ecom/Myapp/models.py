@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 # from django.conf import settings 
 # from django.contrib.auth import get_user_model
 # from django.db.models.signals import post_save
@@ -16,20 +17,22 @@ class content(models.Model):
     price = models.IntegerField()
     
 
-    img1 = models.ImageField(upload_to='img/%y')
-    title1 = models.CharField(max_length=200)
-    price1 = models.IntegerField()
+    # img1 = models.ImageField(upload_to='img/%y')
+    # title1 = models.CharField(max_length=200)
+    # price1 = models.IntegerField()
     
     
-    img2 = models.ImageField(upload_to='img/%y')
-    title2 = models.CharField(max_length=200)
-    price2 = models.IntegerField()
+    # img2 = models.ImageField(upload_to='img/%y')
+    # title2 = models.CharField(max_length=200)
+    # price2 = models.IntegerField()
 
 
 
-# class Cart(BaseModel):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='carts')
-#     is_paid = models.BooleanField(default=False)
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(content, on_delete=models.CASCADE, related_name='carts')
+    quantity = models.IntegerField(default=1)
+    date_added = models.DateTimeField(auto_now_add=True)
 
 
 
