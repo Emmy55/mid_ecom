@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # from django.shortcuts import get_object_or_404
 
 # from shopping_cart.models import Order
@@ -17,13 +17,45 @@ from django.shortcuts import render
 # # Create your views here.
 
 from .models import content
-from .models import product_content
+from .models import product_content, Cart
 
+
+def add_to_cart(request, product_id):
+    product = content.objects.get(id=product_id)
+    cart_item = Cart.objects.filter(user=request.user, product=product).first()
+    if cart_item:
+        cart_item.quantity += 1
+        cart_item.save()
+    else:
+        Cart.objects.create(user=request.user, product=product)
+    return redirect('cart')
+
+def increment(request, product_id):
+    product = content.objects.get(id=product_id)
+    cart_item = Cart.objects.filter(user=request.user, product=product).first()
+    if cart_item:
+        cart_item.quantity += 1
+        cart_item.save()
+    return redirect('cart')
+
+def decrement(request, product_id):
+    product = content.objects.get(id=product_id)
+    cart_item = Cart.objects.filter(user=request.user, product=product).first()
+    if cart_item:
+        cart_item.quantity -= 1
+        cart_item.save()
+    return redirect('cart')
 
 def layout(request):
     return render(request, 'Myapp/layout.html')
 def cart(request):
-    return render(request, 'Myapp/cart.html')
+    cart_items = Cart.objects.filter(user=request.user)
+    total = sum([item.product.price * item.quantity for item in cart_items])
+    context = {
+        'cart_items': cart_items,
+        'total': total,
+    }
+    return render(request, 'Myapp/cart.html', context)
 def signin(request):
     return render(request, 'Myapp/signin.html')
 def login(request):
