@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 # from django.shortcuts import get_object_or_404
 
 # from shopping_cart.models import Order
@@ -36,15 +37,26 @@ def increment(request, product_id):
     if cart_item:
         cart_item.quantity += 1
         cart_item.save()
-    return redirect('cart')
+    data = {
+        'success': True,
+        'message': 'Product added to cart successfully'
+    }
+    return JsonResponse(data)
 
 def decrement(request, product_id):
     product = content.objects.get(id=product_id)
     cart_item = Cart.objects.filter(user=request.user, product=product).first()
+    if cart_item.quantity <= 1:
+        cart_item.delete()
+        return redirect('cart')
     if cart_item:
         cart_item.quantity -= 1
         cart_item.save()
-    return redirect('cart')
+    data = {
+        'success': True,
+        'message': 'Products decucted sucessfully'
+    }
+    return JsonResponse(data)
 
 def layout(request):
     return render(request, 'Myapp/layout.html')
