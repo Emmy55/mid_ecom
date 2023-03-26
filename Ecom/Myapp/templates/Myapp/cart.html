@@ -75,6 +75,7 @@
             /* border: 1px solid black; */
             padding: 10px 14px 10px 14px;
             cursor: pointer;
+            background-color: aliceblue;
         }
 
         .number {
@@ -84,6 +85,7 @@
         .plus {
             padding: 10px 14px 10px 14px;
             cursor: pointer;
+            background-color: aliceblue;
         }
 
         .all_cancel {
@@ -98,30 +100,36 @@
             background: blur(520px);
         } */
     </style>
+    <!-- <link language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+    <link language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+    <link language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>` -->
 </head>
 
 <body>
     <div class="cart1">
         <div class="all_cancel">
-            
+
             <div class="cancel"><i id="cancel" class="fa-solid fa-xmark"></i></div>
         </div>
         <h2>My Cart</h2>
         <hr>
         {% for item in cart_items %}
-        <img src="{{item.product.img}}" alt="">
+        <img src="{{item.product.img.url}}" alt="">
         <div class="desc">
             <h4>{{ item.product.title }}</h4>
             <p>Size: 45</p>
             <p>Price: {{ item.product.price }}</p>
             <div class="three">
-                <div class="minus"><a href="{% url 'decrement' item.product.id%}"><i id="minus" class="fa-solid fa-minus"></i></a></div>
+                <button class="minus" onclick="decrement('{{ item.product.id }}')"><i id="minus"
+                        class="fa-solid fa-minus"></i></button>
                 <div class="number"> {{ item.quantity }}</div>
-                <div class="plus"><a href="{% url 'increment' item.product.id%}"><i id="plus" class="fa-solid fa-plus"></i></a></div>
+                <button class="plus" onclick="increment('{{ item.product.id }}')"><i id="plus"
+                        class="fa-solid fa-plus"></i></button>
             </div>
         </div>
-        {% endfor %}
-        Total: {{ total }}
+    </div>
+    {% endfor %}
+    Total: {{ total }}
     </div>
 
 </body>
@@ -132,23 +140,62 @@
     plus = document.querySelector('.plus')
     cart = document.querySelector('.cart')
     number = document.querySelector('.number')
-    count = 0;
-    cancel.addEventListener('click', () => {
-        cart.style.display = 'none'
-    })
-    minus.addEventListener('click', () => {
-        minus.style.backgroundColor = 'black'
-        minus.style.color = 'white'
-    })
+    count = 0
+    if (number) {
+        count = Number(number.innerHTML) > count ? Number(number.innerHTML) : 0;
+        console.log(typeof ((Number(number.innerHTML))))
 
-    plus.addEventListener('click', () => {
-        plus.style.backgroundColor = 'black'
-        plus.style.color = 'white'
-    })
+        cancel.addEventListener('click', () => {
+            cart.style.display = 'none'
+        })
+        minus.addEventListener('click', () => {
+            minus.style.backgroundColor = 'black'
+            minus.style.color = 'white'
+        })
+
+        plus.addEventListener('click', () => {
+            plus.style.backgroundColor = 'black'
+            plus.style.color = 'white'
+        })
+        function increment(productId) {
+            // var productId = $(this).data('product-id');
+            console.log(productId)
+            $.ajax({
+                url: '/increment/' + productId + '/',
+                success: function (response) {
+                    console.log(response.message);
+                }
+            });
+            count++;
+            number.innerHTML = count
+        }
+
+        function decrement(productId) {
+            // var productId = $(this).data('product-id');
+            console.log(productId)
+            if (count < 1) {
+                window.location.reload(true)
+            }
+            $.ajax({
+                url: '/decrement/' + productId + '/',
+                success: function (response) {
+                    console.log(response.message);
+                }
+            });
+            count--;
+            number.innerHTML = count
+            if (Number(number.innerHTML) < 1) {
+                window.location.reload(true)
+            }
+        }
+    }
+
 
 
 
 </script>
-<script src="https://kit.fontawesome.com/9da17deac8.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<!-- <script src="https://kit.fontawesome.com/9da17deac8.js" crossorigin="anonymous"></script> -->
 
 {%endblock%}
