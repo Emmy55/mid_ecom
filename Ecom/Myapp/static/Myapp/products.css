@@ -2,12 +2,18 @@
     margin: 0;
 }
 .first{
-    height: 320px;
+    height: 60vh;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
+    margin-top: 30px;
     /* background-image: url(E-commerce2/hero_products.jpg); */
 }
+#pro {
+    border-bottom: 3px solid black;
+    height: 10px;
+}
+
 .sells {
 width: 90%;
 height: 120vh;

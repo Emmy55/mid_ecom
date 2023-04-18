@@ -1,77 +1,89 @@
 
-        .create {
-            /* text-align: center; */
-            /* overflow: hidden; */
-            
-            width: 80%;
-        }
-        input{
-            position: relative;
-            height: 30px;
-            width: 25%;
-            
-        }
-        p{
-            /* text-align: center; */
-            width: 20%;
-            left:580px;
-            position: relative;
-            
-
-
-        }
-        #acc {
-            position: relative;
-            top: 90px;
-        }
-        label {
-            position: relative;
-            left: 510px;
-            top: 60px;
-
-        }
-        .create h2 {
-            width: 20%;
-            position: relative;
-            left: 576px;
-            top: 40px;
-        }
-        .account_create{
-            position: relative;
-            left: 515px;
-            color: white;
-            top: 60px;
-
-            height: 37px;
-            background-color: black;
-        }
-        a {
-            text-decoration: none;
-        }
-        .name {
-            text-align:justify;
-        }
-        .have {
-            position: relative;
-            width: 20%;
-            left:510px;        
-            top: 92px;
-            font-size: 15px;
-        }
-        .forgot {
-            position: relative;
-            width: 20%;
-            left:710px;        
-            top: 73px;
-            font-size: 15px;
-        }
-        .login {
-            position: relative;
-            top: 150px;
-            
-        }
-        .reset{
-            position: relative;
-            top: 175px;
-        }
+.create {
+    /* text-align: center; */
+    overflow: hidden;
+    position: relative;
+    left: 41%;
+    width: 40%;
+    height: 100vh;
+    top: 30px;
+}
+input{
+    position: relative;
+    height: 30px;
+    width: 50%;
     
+}
+p{
+    /* text-align: center; */
+    width: 50%;
+    font-size: 15px;
+    left:6%;
+    z-index: 5;
+    position: relative;
+    
+
+
+}
+footer h3, footer .foot_img, footer hr{
+    display: none;
+}
+#acc {
+    position: relative;
+    top: 90px;
+}
+label {
+    position: relative;
+    /* left: 510px; */
+    top: 60px;
+
+}
+.create h2 {
+    width: 70%;
+    position: relative;
+    left: 2%;
+    top: 40px;
+    font-size: 30px;
+}
+.account_create{
+    position: relative;
+    left: .5%;
+    color: white;
+    top: 60px;
+    height: 37px;
+    background-color: black;
+}
+.create a {
+    color: blueviolet;
+    text-decoration: none;
+}
+.name {
+    text-align:justify;
+}
+.have {
+    position: relative;
+    width: 50%;
+    left:3px;        
+    top: 92px;
+    font-size: 15px;
+}
+.forgot a {
+    position: relative;
+    width: 50%;
+    /* float: right; */
+    left:9pc;        
+    top: 99px;
+    font-size: 15px;
+}
+.login {
+    position: relative;
+    top: 90px;
+    /* border: 2px solid black; */
+    /* height: 40vh; */
+    width: 100%;
+    
+}
+.reset{
+    position: relative;
+    top: 175px;
+}
